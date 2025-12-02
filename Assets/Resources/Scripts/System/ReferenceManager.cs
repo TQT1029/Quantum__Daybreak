@@ -50,7 +50,7 @@ public class ReferenceManager : Singleton<ReferenceManager>
                 }
         */
 
-        Debug.LogWarning($"[ReferenceManager] Scene: {scene.name} | Role: {UIManager.Instance.SelectedRole} | Data Loaded: {(characterData != null ? "Success" : "Fail")}");
+        Debug.Log($"[ReferenceManager] Scene: {scene.name} | Role: {UIManager.Instance.SelectedRole} | Data Loaded: {(characterData != null ? "Success" : "Fail")}");
     }
 
     private void LoadCharacterData()

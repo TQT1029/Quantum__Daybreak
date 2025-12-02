@@ -30,9 +30,11 @@ public class PlayerTarget : MonoBehaviour
         Vector2 mousePos = InputManager.Instance.MousePosition; // Cần đảm bảo InputManager trả về Screen Position
         Vector2 worldPoint = ReferenceManager.Instance.MainCamera.ScreenToWorldPoint(mousePos);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, worldPoint, _characterData.InteractionRange, interactLayer);
+        Vector2 directionRay = worldPoint - new Vector2(transform.position.x, transform.position.y);
 
-        Debug.DrawRay(transform.position, worldPoint.normalized * _characterData.InteractionRange, hit.collider == null ? Color.red : Color.green, 0.5f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionRay, _characterData.InteractionRange, interactLayer);
+
+        Debug.DrawRay(transform.position, directionRay.normalized * _characterData.InteractionRange, hit.collider == null ? Color.red : Color.green, 0.5f);
 
         if (hit.collider != null)
         {
