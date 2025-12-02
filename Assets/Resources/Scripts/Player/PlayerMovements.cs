@@ -3,22 +3,19 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovements : MonoBehaviour
 {
-    // Lấy dữ liệu nhân vật từ ReferenceManager
-    private CharacterData _characterData => ReferenceManager.Instance.characterData;
+    [SerializeField] private CharacterData _characterData => ReferenceManager.Instance.characterData;
     [SerializeField] private Rigidbody2D _rb;
-
     // Nếu true: Nhân vật sẽ xoay mặt theo hướng di chuyển
     // Nếu false: Chỉ di chuyển vị trí (thích hợp cho game Pixel Art dùng Animation để đổi hướng)
     [SerializeField] private bool _rotateTowardsDirection = true;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
-
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         // Kiểm tra an toàn: Nếu chưa có data thì không di chuyển
-
 
         if (_characterData == null)
         {
@@ -28,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
         Move(_characterData.MoveSpeed);
 
     }
-    private void Move(float _moveSpeed)
+    protected void Move(float _moveSpeed)
     {
         Vector2 input = InputManager.Instance.MoveInput;
 

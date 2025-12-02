@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7256390777187946944}
   - component: {fileID: 8170301811447356634}
-  - component: {fileID: 6936426422228698509}
+  - component: {fileID: 8948565247860084629}
   - component: {fileID: 8062799978188454646}
   - component: {fileID: 4682810794162410218}
   - component: {fileID: -8506560147512847688}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8124310c4bbbf640b34256d6b20d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6936426422228698509
+--- !u!114 &8948565247860084629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveInput: {x: 0, y: 0}
-  LookInput: {x: 0, y: 0}
+  MousePosition: {x: 0, y: 0}
   IsInteracting: 0
   IsPausing: 0
 --- !u!114 &8062799978188454646
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6936426422228698509}
+      - m_Target: {fileID: 8948565247860084629}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6936426422228698509}
+      - m_Target: {fileID: 8948565247860084629}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
@@ -217,6 +217,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8948565247860084629}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnMousePosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d1fb37b6-0492-49c0-8a7a-088b34d34f31
+    m_ActionName: 'Player/Mouse Position[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
