@@ -7,19 +7,17 @@ public class InputManager : Singleton<InputManager>
     [Header("Di chuyển (Movement)")]
     public Vector2 MoveInput;
 
-    [Header("Cursor")]
-    public Vector2 MousePosition;
+    [Header("Camera")]
+    public Vector2 LookInput;
 
     [Header("Hành động (Actions)")]
     public bool IsInteracting; // Nút E hoặc F chung
     public bool IsPausing;     // Nút ESC
 
     // Gán các hàm này vào Unity Events trong PlayerInput component
-    public void OnMove(InputAction.CallbackContext context) => MoveInput = context.ReadValue<Vector2>();
+    public void OnMove(InputAction.CallbackContext context) { MoveInput = context.ReadValue<Vector2>(); }
 
-    public void OnMousePosition(InputAction.CallbackContext context) => MousePosition = context.ReadValue<Vector2>();
     public void OnInteract(InputAction.CallbackContext context) => IsInteracting = context.performed;
-
 
     public void OnPause(InputAction.CallbackContext context)
     {

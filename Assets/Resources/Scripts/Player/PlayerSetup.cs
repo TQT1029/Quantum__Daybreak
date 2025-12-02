@@ -2,26 +2,32 @@
 
 public class PlayerSetup : MonoBehaviour
 {
-    [SerializeField] protected CharacterData _characterData => ReferenceManager.Instance.characterData;
+    [SerializeField] private CharacterData _characterData => ReferenceManager.Instance.characterData;
     [SerializeField] private SpriteRenderer spriteRen;
 
-    protected void Awake()
+    private void Awake()
     {
         spriteRen = GetComponent<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        InitializeCharacter();
+
+    }
+
+
     /// <summary>
-    /// Hàm này được ReferenceManager gọi để nạp dữ liệu nhân vật bằng cấu trúc kế thừa
+    /// Hàm này được ReferenceManager gọi
     /// </summary>
 
-    /*
-        public void SetCharacterData(CharacterData data)
+    /*  
+       public void SetCharacterData(CharacterData data)
         {
             _characterData = data;
 
             InitializeCharacter();
         }
-
     */
     private void InitializeCharacter()
     {
