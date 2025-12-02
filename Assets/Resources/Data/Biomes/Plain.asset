@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1749c3fa0866b3d44b34efd69687f41d, type: 3}
+  m_Name: Plain
+  m_EditorClassIdentifier: 
+  biomeName: Plain
+  terrainTypes:
+  - name: Short Grass
+    height: 0.4
+    color: {r: 0.16125795, g: 0.79622644, b: 0, a: 1}
+    tile: {fileID: 11400000, guid: 4130a867ed34cd647917eee8a4be0ace, type: 2}
+  - name: Short Grass
+    height: 0.55
+    color: {r: 0.1059392, g: 0.5245282, b: 0, a: 1}
+    tile: {fileID: 11400000, guid: d550a04311ebc284e9e2697c582e2d54, type: 2}
+  biomeBefore: {fileID: 11400000, guid: 17caade30cc3d664fbf78f0024be7133, type: 2}

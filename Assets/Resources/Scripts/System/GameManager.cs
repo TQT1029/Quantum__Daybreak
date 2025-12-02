@@ -11,11 +11,7 @@ public class GameManager : Singleton<GameManager>
     public GameState CurrentState { get; private set; }
 
     //===== Override Methods =====//
-    protected override void OnAwake()
-    {
-        // Khởi tạo trạng thái ban đầu
-        ChangeState(GameState.MainMenu);
-    }
+    protected override void OnAwake() { }
 
     public void ChangeState(GameState newState)
     {
@@ -23,7 +19,6 @@ public class GameManager : Singleton<GameManager>
         switch (newState)
         {
             case GameState.MainMenu:
-                Time.timeScale = 1f;
                 break;
             case GameState.Gameplay:
                 Time.timeScale = 1f;
@@ -37,14 +32,18 @@ public class GameManager : Singleton<GameManager>
     }
 
     //===== Scene Load Events =====//
-    private void OnEnable()=> SceneManager.sceneLoaded += OnSceneLoaded;
-    private void OnDisable()=> SceneManager.sceneLoaded -= OnSceneLoaded;
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "SystemSetup")
         {
             SceneManager.LoadScene("MainMenu");
+        }
+        else if (scene.name == "MainMenu")
+        {
+            ChangeState(GameState.MainMenu);
         }
     }
 

@@ -4,22 +4,23 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-9)]
 public class ReferenceManager : Singleton<ReferenceManager>
 {
-    [Header("Tham chiếu toàn cục (Global References)")]
+    [Header("Global References")]
     public Camera MainCamera;
     public Transform PlayerTransform;
-    public CharacterData characterData; // Dữ liệu sẽ được nạp tự động
+    public CharacterData characterData;
+
+    // Tham chiếu đến WorldGenerator hiện tại để các script khác (AI, ChunkManager) truy cập
+    public WorldGenerator ActiveWorld;
 
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
     private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Tự động tìm Camera chính
         MainCamera = Camera.main;
 
-        // Tự động tìm Player dựa trên Tag
+        // Tìm Player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-
         if (playerObj != null)
         {
             PlayerTransform = playerObj.transform;
@@ -29,45 +30,35 @@ public class ReferenceManager : Singleton<ReferenceManager>
             PlayerTransform = null;
         }
 
-        // Tự động nạp dữ liệu nhân vật dựa trên Role đã chọn
+        // Load Data Nhân vật
         LoadCharacterData();
-        
-        /// <summary>
-        /// Load Data nhân vật dùng hệ thống Kế thừa
-        /// </summary>
-        /*
-                // Cập nhật lại thông số cho Player (nếu đã tìm thấy Player)
-                if (PlayerTransform != null && characterData != null)
-                {
-                    // Tìm script di chuyển và nạp data vào
-                    PlayerController controller = PlayerTransform.GetComponent<PlayerController>();
-                    if (controller != null)
-                    {
-                        controller.SetCharacterData(characterData); 
-                    }
-                }
-        */
 
-        Debug.LogWarning($"[ReferenceManager] Scene: {scene.name} | Role: {UIManager.Instance.SelectedRole} | Data Loaded: {(characterData != null ? "Success" : "Fail")}");
+        // Setup Player Controller
+        if (PlayerTransform != null && characterData != null)
+        {
+            PlayerController controller = PlayerTransform.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.SetCharacterData(characterData);
+            }
+        }
+
+        ActiveWorld = FindFirstObjectByType<WorldGenerator>();
+
+        Debug.Log($"[ReferenceManager] Scene: {scene.name} | Player Found: {PlayerTransform != null} | Map Found: {ActiveWorld != null}");
     }
 
     private void LoadCharacterData()
     {
-        // Lấy Role từ GameManager
         RoleType currentRole = UIManager.Instance.SelectedRole;
 
-        // LƯU Ý: Tên file trong Resources phải trùng KHÍT với tên trong Enum (bao gồm viết hoa/thường)
-        string path = $"ScriptableObjects/Data/Characters/{currentRole.ToString()}";
+        string path = $"Assets/Data/Characters/{currentRole}";
 
         characterData = Resources.Load<CharacterData>(path);
 
         if (characterData == null)
         {
-            Debug.LogError($"[ReferenceManager] LỖI: Không tìm thấy file tại 'ScriptableObjects/Data/Characters/{path}'. Kiểm tra lại tên file và folder!");
-        }
-        else
-        {
-            Debug.Log($"[ReferenceManager] Đã load data: {characterData.name}");
+            Debug.LogError($"[ReferenceManager] LỖI: Không tìm thấy file tại Resources/{path}. Hãy kiểm tra lại folder Resources!");
         }
     }
 }
