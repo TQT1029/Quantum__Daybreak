@@ -150,7 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23423aec432071b44bf57db9e4b21d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsToLoot: []
+  itemsToLoot:
+  - itemName: sword
 --- !u!61 &131817869
 BoxCollider2D:
   m_ObjectHideFlags: 0
