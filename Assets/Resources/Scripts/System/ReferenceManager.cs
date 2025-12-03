@@ -31,13 +31,11 @@ public class ReferenceManager : Singleton<ReferenceManager>
 
         // Tự động nạp dữ liệu nhân vật dựa trên Role đã chọn
         LoadCharacterData();
-
-
-
-        ///<summary>
-        /// Không sử dụng Kế thừa trong trường hợp này để tránh rối code.
+        
+        /// <summary>
+        /// Load Data nhân vật dùng hệ thống Kế thừa
         /// </summary>
-        /* 
+        /*
                 // Cập nhật lại thông số cho Player (nếu đã tìm thấy Player)
                 if (PlayerTransform != null && characterData != null)
                 {
@@ -45,12 +43,12 @@ public class ReferenceManager : Singleton<ReferenceManager>
                     PlayerController controller = PlayerTransform.GetComponent<PlayerController>();
                     if (controller != null)
                     {
-                        controller.SetCharacterData(characterData);
+                        controller.SetCharacterData(characterData); 
                     }
                 }
         */
 
-        Debug.Log($"[ReferenceManager] Scene: {scene.name} | Role: {UIManager.Instance.SelectedRole} | Data Loaded: {(characterData != null ? "Success" : "Fail")}");
+        Debug.LogWarning($"[ReferenceManager] Scene: {scene.name} | Role: {UIManager.Instance.SelectedRole} | Data Loaded: {(characterData != null ? "Success" : "Fail")}");
     }
 
     private void LoadCharacterData()
