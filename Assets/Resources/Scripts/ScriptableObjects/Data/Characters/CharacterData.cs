@@ -33,6 +33,9 @@ public class CharacterData : ScriptableObject
     [Range(0f, 100f)]
     public float MedicalSkill;
 
+    [Tooltip("Khoảng các tương tác")]
+    public float InteractionRange = 3f;
+
     [Header("Trang Bị Khởi Đầu")]
     public string[] StartingItems; // Ví dụ: "Scanner", "Basic Knife", "Medkit"
 }
