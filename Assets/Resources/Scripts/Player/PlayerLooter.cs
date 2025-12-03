@@ -23,7 +23,7 @@ public class PlayerLooter : MonoBehaviour
     }
 
     // Xử lý va chạm để xác định vật thể có thể loot nào đang ở gần
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         LootableObject loot = other.GetComponent<LootableObject>();
         if (loot != null)
@@ -34,7 +34,7 @@ public class PlayerLooter : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         LootableObject loot = other.GetComponent<LootableObject>();
         if (loot != null && currentLootable == loot)

@@ -16,10 +16,10 @@ public class LootableObject : MonoBehaviour
     public List<LootItem> itemsToLoot = new List<LootItem>();
 
     // Vùng nhìn thấy trên màn hình để thông báo người chơi có thể loot
-    private bool playerIsNearby = true;
+    private bool playerIsNearby = false;
 
     // Gán tag cho đối tượng có thể loot. Cần có Collider với isTrigger = true.
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // Kiểm tra xem đối tượng va chạm có phải là người chơi không
         if (other.CompareTag("Player"))
@@ -30,7 +30,7 @@ public class LootableObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
